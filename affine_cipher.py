@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 
 # @author:                      Antoine HENRY
-# @lastUpdate:                  2019-04-14
+# @lastUpdate:                  2019-05-01
 # @role:                        Affine ciphering and deciphering
 # @comments:                    ESGI - Advanced Cryptography - TD1
 # @version:                     v1.0 - Uppercase charset
@@ -52,14 +52,3 @@ def main():
 
 if __name__ == "__main__":
     main()
-
-
-
-
-
-
-
-
-
-
-
