@@ -1,9 +1,9 @@
 #!/usr/bin/env python3
 
 # @author:                      AastromSecurity
-# @lastUpdate:                  2019-05-01
+# @lastUpdate:                  2019-05-03
 # @role:                        Affine ciphering and deciphering
-# @comments:                    ESGI - Advanced Cryptography - TD1
+# @comments:                    ESGI - Advanced Cryptography
 # @version:                     v1.0 - Uppercase charset
 
 import argparse, sys
