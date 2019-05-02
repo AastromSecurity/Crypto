@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 
-# @author:                      Antoine HENRY
+# @author:                      AastromSecurity
 # @lastUpdate:                  2019-05-01
 # @role:                        Affine ciphering and deciphering
 # @comments:                    ESGI - Advanced Cryptography - TD1
@@ -8,8 +8,10 @@
 
 import argparse, sys
 
+# Available charset
 chset = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
 
+# Encryption method based on affine ciphering
 def affine_ciphering(decrypted: str, a: int, b: int):
     encrypted = ""
     for d in decrypted:
@@ -17,6 +19,7 @@ def affine_ciphering(decrypted: str, a: int, b: int):
         encrypted += e
     return encrypted
 
+# Decryption method based on affine ciphering
 def affine_deciphering(encrypted: str, a: int, b: int):
     decrypted = ""
     for e in encrypted:
@@ -24,12 +27,14 @@ def affine_deciphering(encrypted: str, a: int, b: int):
         decrypted += d
     return decrypted
 
+# Returns the inverse modulo 26 of integer passed as parameter
 def inverse_modulo26(a: int):
     x = 0
     while(a * x % 26 != 1):
         x += 1
     return x
 
+# Generates parser
 def get_parser():
     parser = argparse.ArgumentParser()
     parser.add_argument("action", help="specify action to process over string (cipher or decipher)", action="store", type=str, metavar="action")
@@ -38,6 +43,7 @@ def get_parser():
     parser.add_argument("b_key", help="B key", action="store", type=int, metavar="B")
     return parser
 
+# Main function
 def main():
     args = get_parser().parse_args()
     action = args.action; string = args.string.upper(); a_key = args.a_key; b_key = args.b_key
