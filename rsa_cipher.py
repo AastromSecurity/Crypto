@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 
-# @author:                      Antoine HENRY
+# @author:                      AastromSecurity
 # @lastUpdate:                  2019-05-03
 # @role:                        RSA implementation / Fast Modular Exponentiation
 # @comments:                    ESGI - Advanced Cryptography
@@ -45,7 +45,7 @@ def gen_rsa_folders():
     if not os.path.exists(rsa_pubpath): os.mkdir(rsa_pubpath)
     if not os.path.exists(rsa_privpath): os.mkdir(rsa_privpath)
 
-# Generate parser
+# Generates parser
 def get_parser():
     parser = argparse.ArgumentParser()
     parser.add_argument("-c", "--cipher", help="process RSA ciphering", action="store_true")
@@ -101,7 +101,7 @@ def next_probable_prime(a: int):
     if is_probable_prime(a) is False: return next_probable_prime(a + 1)
     else: return a
 
-# Read files containing public and private RSA keys and return a tuple
+# Reads files containing public and private RSA keys and returns a tuple
 def read_rsa_keys():
     global rsa_pubkey
     global rsa_privkey
