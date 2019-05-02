@@ -103,8 +103,6 @@ def next_probable_prime(a: int):
 
 # Reads files containing public and private RSA keys and returns a tuple
 def read_rsa_keys():
-    global rsa_pubkey
-    global rsa_privkey
     with open(rsa_pubfile, 'r') as public_keyfile, open(rsa_privfile, 'r') as private_keyfile:
         return (int(public_keyfile.read(), base=16), int(private_keyfile.read(), base=16))
 
