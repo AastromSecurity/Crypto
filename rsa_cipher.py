@@ -26,10 +26,12 @@ rsa_pubfile = rsa_pubpath + "/public_key"; rsa_privfile = rsa_privpath + "/priva
 def gen_prime_by_length(n: int):
     return next_probable_prime(gen_random_by_length(n))
 
-# Generates a fixed-size random number
+# Generates a fixed-size odd random number
 def gen_random_by_length(n: int):
     start = 10 ** (n - 1); end = (10 ** n) - 1
-    return random.randint(start, end)
+    rand = random.randint(start, end)
+    if rand % 2 == 0: rand += 1
+    return rand
 
 # Generates a tuple composed of RSA public and private keys
 def gen_rsa_keys(nb_bits: int):
@@ -80,25 +82,23 @@ def is_probable_prime(n: int):
                 if x == 1: return False
                 j += 1
             if x != n - 1: return False
-        return True
+    return True
 
 # Main function
 def main():
     args = get_parser().parse_args(); gen_rsa_folders()
     if not os.path.isfile(rsa_pubfile) or not os.path.isfile(rsa_privfile):
         if args.generate: write_rsa_keys(gen_rsa_keys(args.generate)); sys.exit(0)
-        else: print("[\033[31;1m!\033[0;m]  You need to generate RSA keys for the first time !\n     Please restart the program with the following syntax: './rsa_cipher --generate [nb_bits]'.\n     For more information on using this program, issue the command './rsa_cipher --help'."); sys.exit(1)
+        else: print("[\033[31;1m!\033[0;m]  You need to generate RSA keys for the first time !\n     Please restart the program with the following syntax: './rsa_cipher.py --generate [nb_bits]'.\n     For more information on using this program, issue the command './rsa_cipher.py --help'."); sys.exit(1)
     if args.generate: nb_bits = args.generate; write_rsa_keys(gen_rsa_keys(nb_bits)); sys.exit(0)
-    if args.message: message = args.message; 
+    if args.message: message = args.message
     rsa_pubkey, rsa_privkey = read_rsa_keys()
-    if args.cipher:
-        print("\033[1mENCRYPTED : \033[32;1m" + str(rsa_cipher(message, public_exponent, rsa_pubkey)) + "\033[0m")
-    if args.decipher:
-        print("\033[1mDECRYPTED : \033[32;1m" + str(rsa_decipher(message, rsa_privkey, rsa_pubkey)) + "\033[0m")
+    if args.cipher: print("\033[1mENCRYPTED : \033[32;1m" + str(rsa_cipher(message, public_exponent, rsa_pubkey)) + "\033[0m")
+    if args.decipher: print("\033[1mDECRYPTED : \033[32;1m" + str(rsa_decipher(message, rsa_privkey, rsa_pubkey)) + "\033[0m")
 
-# Returns the most likely prime number that follows the integer as a parameter of the function
+# Returns the most likely prime number that follows the odd integer passed as parameter
 def next_probable_prime(a: int):
-    if is_probable_prime(a) is False: return next_probable_prime(a + 1)
+    if is_probable_prime(a) is False: return next_probable_prime(a + 2)
     else: return a
 
 # Reads files containing public and private RSA keys and returns a tuple
