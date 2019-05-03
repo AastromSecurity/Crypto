@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 
-# @author:                      Antoine HENRY
+# @author:                      AastromSecurity
 # @lastUpdate:                  2019-05-03
 # @role:                        Feistel ciphering and deciphering
 # @comments:                    ESGI - Advanced Cryptography
